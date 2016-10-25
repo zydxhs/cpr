@@ -7,3 +7,6 @@
 [submodule "opt/mongoose"]
 	path = opt/mongoose
 	url = git://github.com/whoshuu/mongoose.git
+[submodule "opt/openssl"]
+	path = opt/openssl
+	url = git://github.com/openssl/openssl.git
