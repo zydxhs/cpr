@@ -1,6 +1,7 @@
 #include "cpr/session.h"
 
 #include <algorithm>
+#include <cstdlib>
 #include <functional>
 #include <string>
 
@@ -68,6 +69,9 @@ Session::Impl::Impl() {
         curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 50L);
         curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, curl_->error);
         curl_easy_setopt(curl, CURLOPT_COOKIEFILE, "");
+        if (const char* curl_ca_info = std::getenv("CURL_CA_INFO")) {
+            curl_easy_setopt(curl, CURLOPT_CAINFO, curl_ca_info);
+        }
 #ifdef CPR_CURL_NOSIGNAL
         curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);
 #endif
